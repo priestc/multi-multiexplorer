@@ -1,0 +1,28 @@
+<html>
+    <script src="multimultiexplorer.js"></script>
+    <script>
+
+        multimultiexplorer({
+            data: 'current_price',
+            fiat: 'usd',
+            currency: 'btc'
+        }, function(result) {
+            console.log("got price!", result);
+            multimultiexplorer({
+                data: 'block',
+                currency: 'btc',
+                block_number: 976,
+            }, function(result) {
+                console.log("got block!", result);
+                multimultiexplorer({
+                    data: 'unspent_outputs',
+                    currency: 'btc',
+                    address: '1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a'
+                }, function(result) {
+                    console.log("got utxos!", result);
+                });
+            });
+        });
+
+    </script>
+</html>

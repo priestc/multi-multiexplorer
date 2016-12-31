@@ -1,8 +1,6 @@
 var HOSTS = [
     'http://localhost:8001',
-    'https://me.flightlogg.in',
     'https://multiexplorer.com',
-    'https://me.somethingelse.com'
 ];
 
 function try_service(index, path, success_callback) {
@@ -14,12 +12,14 @@ function try_service(index, path, success_callback) {
     console.log("trying url", url);
 
     var request = new XMLHttpRequest();
-    request.onload = function () {
-        if(request.status == 200) {
-            success_callback(JSON.parse(request.response));
-        } else {
-            console.log("failure:", index);
-            try_service(index + 1, path, success_callback)
+    request.onreadystatechange = function () {
+        if(request.readyState == 4) { // DONE
+            if(request.status == 200) {
+                success_callback(JSON.parse(request.response));
+            } else {
+                console.log("failure:", index);
+                try_service(index + 1, path, success_callback)
+            }
         }
     };
     request.open('GET', url, true);

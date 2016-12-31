@@ -29,7 +29,9 @@ of the returned result object.
         data: 'block',
         currency: 'btc',
         block_number: 976,
+        service_mode: 'random'
     }, function(result) {
+        // this one calls a random blockchain service each time.
         console.log("block 976 was mined on:", result.block.time);
         console.log("block data courtesy of:", result.service_name);
     });

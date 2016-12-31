@@ -15,31 +15,33 @@ of the returned result object.
 
 ## Examples
 
-    for(var currency of ['btc', 'ltc', 'doge']) {
-        multimultiexplorer({
-            data: 'current_price',
-            fiat: 'usd',
-            currency: currency
-        }, function(result) {
-            console.log("got price for usd -> " + currency + "!", result.current_price);
-        });
-    }
-
+```javascript
+for(var currency of ['btc', 'ltc', 'doge']) {
     multimultiexplorer({
-        data: 'block',
-        currency: 'btc',
-        block_number: 976,
-        service_mode: 'random'
+        data: 'current_price',
+        fiat: 'usd',
+        currency: currency
     }, function(result) {
-        // this one calls a random blockchain service each time.
-        console.log("block 976 was mined on:", result.block.time);
-        console.log("block data courtesy of:", result.service_name);
+        console.log("got price for usd -> " + currency + "!", result.current_price);
     });
+}
 
-    multimultiexplorer({
-        data: 'address_balance',
-        currency: 'btc',
-        address: '1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a'
-    }, function(result) {
-        console.log("got balance!", result.address_balance);
-    });
+multimultiexplorer({
+    data: 'block',
+    currency: 'btc',
+    block_number: 976,
+    service_mode: 'random'
+}, function(result) {
+    // this one calls a random blockchain service each time.
+    console.log("block 976 was mined on:", result.block.time);
+    console.log("block data courtesy of:", result.service_name);
+});
+
+multimultiexplorer({
+    data: 'address_balance',
+    currency: 'btc',
+    address: '1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a'
+}, function(result) {
+    console.log("got balance!", result.address_balance);
+});
+```

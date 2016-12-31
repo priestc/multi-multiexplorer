@@ -1,20 +1,22 @@
-var HOSTS = [
-    'http://localhost:8001',
+var MULTIEXPLORER_MIRRORS = [
+    'http://localhost:8002',
     'https://multiexplorer.com',
 ];
 
 function _try_service(index, path, success_callback) {
-
-    if(!HOSTS[index]) {
+    var this_host = MULTIEXPLORER_MIRRORS[index]
+    if(!this_host) {
         throw "Exhausted all multiexplorer mirrors."
     }
-    var url = HOSTS[index] + path;
+    var url = this_host + path;
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
         if(request.readyState == 4) { // DONE
             if(request.status == 200) {
-                success_callback(JSON.parse(request.response));
+                var parsed = JSON.parse(request.response);
+                parsed.multiexplorer_host = this_host;
+                success_callback(parsed);
             } else {
                 _try_service(index + 1, path, success_callback)
             }

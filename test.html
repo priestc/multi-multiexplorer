@@ -1,5 +1,8 @@
 <html>
     <script src="multimultiexplorer.js"></script>
+
+    <h2>Open the dev console (ctrl + alt + i) to see the results of this test</h2>
+
     <script>
 
         multimultiexplorer({
@@ -19,7 +22,8 @@
                     currency: 'btc',
                     address: '1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a'
                 }, function(result) {
-                    console.log("got utxos!", result);
+                    console.log("got utxos!", result.utxos);
+                    console.log("from server:", result.multiexplorer_host);
                 });
             });
         });

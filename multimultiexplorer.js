@@ -3,13 +3,12 @@ var HOSTS = [
     'https://multiexplorer.com',
 ];
 
-function try_service(index, path, success_callback) {
-    console.log("trying", index);
+function _try_service(index, path, success_callback) {
+
     if(!HOSTS[index]) {
-        return
+        throw "Exhausted all multiexplorer mirrors."
     }
     var url = HOSTS[index] + path;
-    console.log("trying url", url);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -17,8 +16,7 @@ function try_service(index, path, success_callback) {
             if(request.status == 200) {
                 success_callback(JSON.parse(request.response));
             } else {
-                console.log("failure:", index);
-                try_service(index + 1, path, success_callback)
+                _try_service(index + 1, path, success_callback)
             }
         }
     };
@@ -26,7 +24,7 @@ function try_service(index, path, success_callback) {
     request.send();
 }
 
-function build_args(opts, names) {
+function _build_args(opts, names) {
     var args = [];
     for (name of names) {
         if(opts[name]) {
@@ -61,6 +59,6 @@ function multimultiexplorer(opts, callback) {
         var choices = ['currency', 'tx'];
     }
 
-    var path = "/api/" + data + "/" + mode + "?" + build_args(opts, choices);
-    try_service(0, path, callback);
+    var path = "/api/" + data + "/" + mode + "?" + _build_args(opts, choices);
+    _try_service(0, path, callback);
 }

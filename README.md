@@ -24,7 +24,7 @@ for(var currency of ['btc', 'ltc', 'doge']) {
         fiat: 'usd',
         currency: currency
     }, function(result) {
-        console.log("got price for usd -> " + currency + "!", result.current_price);
+        console.log("got price for usd/" + result.currency[0] + "!", result.current_price);
     });
 }
 

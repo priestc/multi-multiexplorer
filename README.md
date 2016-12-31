@@ -1,6 +1,8 @@
 # multi-multiexplorer
 
 This is a javascript library for fetching blockchain data from multiexplorer nodes.
+This library strives to the the easiest and most reliable way to get blockchain
+data for any cryptocurrency.
 
 ## Usage
 

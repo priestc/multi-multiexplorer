@@ -1,6 +1,6 @@
 var MULTIEXPLORER_MIRRORS = [
-    'http://localhost:8001',
     'https://multiexplorer.com',
+    'http://me.flightlogg.in'
 ];
 
 function _try_service(index, path, success_callback) {

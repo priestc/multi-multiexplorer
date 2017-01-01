@@ -24,6 +24,14 @@
                 }, function(result) {
                     console.log("got utxos!", result.utxos);
                     console.log("from server:", result.multiexplorer_host);
+                    multimultiexplorer({
+                        data: 'address_balance',
+                        currency: 'btc',
+                        service_mode: 'private2',
+                        addresses: ['1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a', '16LoW7y83wtawMg5XmT4M3Q7EdjjUmenjM']
+                    }, function(result) {
+                        console.log("got multiple balances!", result.balance.total_balance);
+                    });
                 });
             });
         });

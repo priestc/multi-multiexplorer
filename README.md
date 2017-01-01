@@ -46,4 +46,12 @@ multimultiexplorer({
 }, function(result) {
     console.log("got balance!", result.address_balance);
 });
+
+multimultiexplorer({
+    data: 'address_balance',
+    currency: 'btc',
+    addresses: ['1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a', '16LoW7y83wtawMg5XmT4M3Q7EdjjUmenjM']
+}, function(result) {
+    console.log("got multiple balances!", result.balance.total_balance);
+});
 ```

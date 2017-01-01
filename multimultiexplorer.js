@@ -1,5 +1,5 @@
 var MULTIEXPLORER_MIRRORS = [
-    'http://localhost:8002',
+    'http://localhost:8001',
     'https://multiexplorer.com',
 ];
 
@@ -30,7 +30,11 @@ function _build_args(opts, names) {
     var args = [];
     for (name of names) {
         if(opts[name]) {
-            args.push(name + "=" + opts[name]);
+            if(name == 'addresses') {
+                args.push("addresses=" + opts['addresses'].join(','));
+            } else {
+                args.push(name + "=" + opts[name]);
+            }
         }
     }
     return args.join("&");

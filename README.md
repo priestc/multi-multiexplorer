@@ -49,8 +49,25 @@ multimultiexplorer({
 
 multimultiexplorer({
     data: 'address_balance',
-    currency: 'btc',
-    addresses: ['1GkQmKAmHtNfnD3LHhTkewJxKHVSta4m2a', '16LoW7y83wtawMg5XmT4M3Q7EdjjUmenjM']
+    currency: 'ltc',
+    addresses: ['Lf9W9tho7cux9UnSKxcurkLjqwpWQjcJwt', 'LiF1KBeTuoqDnN89wwq4wZQYPmfpw4Cxa7']
+}, function(result) {
+    console.log("got multiple balances!", result.balance.total_balance);
+});
+```
+
+# Using custom MultiExplorer servers
+
+The global variable `MULTIEXPLORER_MIRRORS` contains a list of servers that the
+library uses. If you want to change them, set the variable before calling
+`multimultiexplorer`.
+
+```javascript
+MULTIEXPLORER_MIRRORS = ['s1.custom.com', 's2.custom.com']
+multimultiexplorer({
+    data: 'address_balance',
+    currency: 'ltc',
+    addresses: ['Lf9W9tho7cux9UnSKxcurkLjqwpWQjcJwt', 'LiF1KBeTuoqDnN89wwq4wZQYPmfpw4Cxa7']
 }, function(result) {
     console.log("got multiple balances!", result.balance.total_balance);
 });
